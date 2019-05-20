@@ -14,6 +14,10 @@ You will need to have `leiningen` installed on your computer.
 
     $ lein run
 
+<p align="center">
+  <img width="460" alt="terminal-working-version" src="https://user-images.githubusercontent.com/15306309/57993564-eefd4b00-7a8f-11e9-9be9-e3199310de2f.png">
+</p>
+
 ## Language Features
 
 - Numbers (`Float`)
