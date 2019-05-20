@@ -1,36 +1,26 @@
 # clisp
 
-FIXME: description
+A PoC of a lisp REPL interpreter in Clojure
 
-## Installation
-
-Download from http://example.com/FIXME.
+I made this project because I wanted to see how it would look like to make the same lisp REPL interpreter, but instead of [Haskell]([https://github.com/otaviopace/hisp](https://github.com/otaviopace/hisp)) (yeah, I've made this in `Haskell` too), in `Clojure`.
 
 ## Usage
 
-FIXME: explanation
+You will need to have `leiningen` installed on your computer.
 
-    $ java -jar clisp-0.1.0-standalone.jar [args]
+    $ lein run
 
-## Options
+## Language Features
 
-FIXME: listing of options this app accepts.
+- Numbers (`Float`)
+- Addition (`+`)
 
-## Examples
+That's all, it has few features because it is a proof of concept.
 
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
 
 ## License
 
-Copyright © 2019 FIXME
+Copyright ¬© 2019 FIXME
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
