@@ -52,10 +52,8 @@
 
 (defn sum-aux
   [expr1 expr2]
-  (let [
-        n1 (get-in expr1 [:value])
-        n2 (get-in expr2 [:value])
-        ]
+  (let [n1 (get-in expr1 [:value])
+        n2 (get-in expr2 [:value])]
     (+ n1 n2)))
 
 (defn sum
