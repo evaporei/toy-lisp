@@ -43,7 +43,7 @@
 
 (defn is-expression-of-type
   [expr type']
-  (= (get-in expr [:type]) type'))
+  (= (:type expr) type'))
 
 (defn is-symbol [expr] (is-expression-of-type expr "symbol"))
 (defn is-number [expr] (is-expression-of-type expr "number"))
@@ -52,8 +52,8 @@
 
 (defn sum-aux
   [expr1 expr2]
-  (let [n1 (get-in expr1 [:value])
-        n2 (get-in expr2 [:value])]
+  (let [n1 (:value expr1)
+        n2 (:value expr2)]
     (+ n1 n2)))
 
 (defn sum
@@ -69,7 +69,7 @@
 (defn eval'
   [env expr]
   (cond
-    (is-symbol expr) (get-in env [(get-in expr [:value])])
+    (is-symbol expr) (get-in env [(:value expr)])
     (is-number expr) expr
     (is-list expr) (if (empty? expr)
                      (throw (build-error "Expected a non empty list"))
@@ -80,18 +80,14 @@
                          :else (throw (build-error "First form must be a function")))))
     :else (throw (build-error "Unexistent expression type"))))
 
-(defn get-expr-value
-  [expr]
-  (get-in expr [:value]))
-
 (defn repl
   []
   (print "clisp > ")
   (flush)
   (try
-    (->> (read-line) tokenize parse first (eval' default-env) get-expr-value println)
+    (->> (read-line) tokenize parse first (eval' default-env) :value println)
     (catch Exception e
-      (println "Error:" (get-in (Throwable->map e) [:cause]))))
+      (println "Error:" (:cause (Throwable->map e)))))
   (repl))
 
 (defn -main
