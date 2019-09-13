@@ -85,7 +85,14 @@
   (print "clisp > ")
   (flush)
   (try
-    (->> (read-line) tokenize parse first (eval' default-env) :value println)
+    (->>
+      read-line
+      tokenize
+      parse
+      first
+      eval' default-env
+      :value
+      println)
     (catch Exception e
       (println "Error:" (:cause (Throwable->map e)))))
   (repl))
