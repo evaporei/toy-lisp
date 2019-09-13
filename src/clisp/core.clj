@@ -22,14 +22,10 @@
 (defn parse-atom
   [atom]
   (try
-    {
-      :type "number"
-      :value (Double/parseDouble atom)
-      }
-    (catch Exception e {
-                         :type "symbol"
-                         :value atom
-                         })
+    {:type "number"
+      :value (Double/parseDouble atom)}
+    (catch Exception e {:type "symbol"
+                         :value atom})
     )
   )
 
@@ -88,9 +84,7 @@
     )
   )
 
-(def default-env {
-                  "+" {:type "func" :value sum}
-                  })
+(def default-env {"+" {:type "func" :value sum}})
 
 (defn eval'
   [env expr]
