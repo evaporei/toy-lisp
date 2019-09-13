@@ -20,9 +20,7 @@
     {:type "number"
       :value (Double/parseDouble atom)}
     (catch Exception e {:type "symbol"
-                         :value atom})
-    )
-  )
+                         :value atom})))
 
 (declare read-seq)
 (defn parse
@@ -32,9 +30,7 @@
     (let [[token & tokens] tokens] (cond
                                      (= token "(") (read-seq tokens [])
                                      (= token ")") (throw (build-error "Unexpected `)` token"))
-                                     :else [(parse-atom token), tokens]))
-    )
-  )
+                                     :else [(parse-atom token), tokens]))))
 
 (defn read-seq
   [tokens expr-list]
@@ -43,12 +39,7 @@
     (let [[next-token & tokens] tokens] (cond
                                           (= next-token ")") [expr-list, tokens]
                                           :else (let [[expr, tokens] (parse (concat [next-token] tokens))]
-                                                  (read-seq tokens (concat expr-list [expr]))
-                                                  )
-                                          )
-      )
-    )
-  )
+                                                  (read-seq tokens (concat expr-list [expr])))))))
 
 (defn is-expression-of-type
   [expr type']
@@ -65,8 +56,7 @@
         n1 (get-in expr1 [:value])
         n2 (get-in expr2 [:value])
         ]
-    (+ n1 n2))
-  )
+    (+ n1 n2)))
 
 (defn sum
   [expr-list]
@@ -74,10 +64,7 @@
     (throw (build-error "Could not sum, list expression is empty"))
     (if (not (some is-number expr-list))
       (throw (build-error "Could not sum, not all expressions in list are Numbers"))
-      {:type "number" :value (reduce sum-aux expr-list)}
-      )
-    )
-  )
+      {:type "number" :value (reduce sum-aux expr-list)})))
 
 (def default-env {"+" {:type "func" :value sum}})
 
@@ -92,10 +79,8 @@
                        (cond
                          (is-func func) (let [eval-args (map (partial eval' env) (rest expr))]
                                           ((:value func) eval-args))
-                         :else (throw (build-error "First form must be a function"))))
-                     )
-    :else (throw (build-error "Unexistent expression type")))
-  )
+                         :else (throw (build-error "First form must be a function")))))
+    :else (throw (build-error "Unexistent expression type"))))
 
 (defn get-expr-value
   [expr]
@@ -108,12 +93,9 @@
   (try
     (->> (read-line) tokenize parse first (eval' default-env) get-expr-value println)
     (catch Exception e
-      (println "Error:" (get-in (Throwable->map e) [:cause])))
-    )
-  (repl)
-  )
+      (println "Error:" (get-in (Throwable->map e) [:cause]))))
+  (repl))
 
 (defn -main
   [& args]
-  (repl)
-  )
+  (repl))
