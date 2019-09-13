@@ -7,17 +7,12 @@
 (defn tokenize
   [input]
   (filter not-empty
-   (str/split
-     (str/triml
-       (str/replace
-         (str/replace input #"\(" " ( ")
-         #"\)"
-         " ) ")
-       )
-     #" "
-     )
-   )
-  )
+   (->
+     input
+     (str/replace #"\(" " ( ")
+     (str/replace #"\)" " ) ")
+     str/triml
+     (str/split #" "))))
 
 (defn parse-atom
   [atom]
