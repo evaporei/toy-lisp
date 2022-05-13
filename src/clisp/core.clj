@@ -1,4 +1,4 @@
-(ns clisp.core
+(ns toy-lisp.core
   (:gen-class)
   (:require [clojure.string :as str]))
 
@@ -82,7 +82,7 @@
 
 (defn repl
   []
-  (print "clisp > ")
+  (print "toy-lisp > ")
   (flush)
   (try
     (->>

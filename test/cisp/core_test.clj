@@ -1,6 +1,6 @@
-(ns clisp.core-test
+(ns toy-lisp.core-test
   (:require [clojure.test :refer :all]
-            [clisp.core :refer :all]))
+            [toy-lisp.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

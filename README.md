@@ -1,4 +1,4 @@
-# clisp
+# toy-lisp
 
 A PoC of a lisp REPL interpreter in Clojure
 
